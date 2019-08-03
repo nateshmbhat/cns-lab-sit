@@ -1,5 +1,7 @@
 # Prerequisites
 *.d
+*.cpp~
+*.swp
 
 # Compiled Object files
 *.slo
