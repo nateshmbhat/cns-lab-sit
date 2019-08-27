@@ -2,6 +2,8 @@
 .vscode/
 *.d
 *.cpp~
+*.out
+*.exe
 *.swp
 
 # Compiled Object files
