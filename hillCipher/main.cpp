@@ -1,8 +1,8 @@
 #include<bits/stdc++.h>
-
 using namespace std ;
 
 int key[3][3] ;
+int C[1000][3] = {0}  ; //cipher text
 
 int findDet(int m[3][3]  , int n ){
     if(n==2) return m[0][0] * m[1][1] - m[0][1]*m[1][0] ;
@@ -12,9 +12,7 @@ int findDet(int m[3][3]  , int n ){
 	else return 0 ; //invalid input
 }
 
-int mod26(int x){
-	return x>=0?(x%26):26-(abs(x)%26) ; 
-}
+int mod26(int x){ return x>=0?(x%26):26-(abs(x)%26) ; }
 
 int findDetInverse(int R , int D = 26){ //R is the remainder or determinant
 	int i =0 ;
@@ -47,14 +45,13 @@ void multiplyMatrices(int a[1000][3] , int a_rows , int a_cols ,  int b[1000][3]
 }
 
 
-void findInverse(int m[3][3] , int n  , int detInverse ) {		
+void findInverse(int m[3][3] , int n  , int detInverse , int inverse[3][3] ) {		
 	int adj[3][3] = {0} ; 
 	if(n==2){
 		adj[0][0] = m[1][1] ; adj[1][1] = m[0][0]  ; adj[0][1] = -m[0][1] ; adj[1][0] = -m[1][0] ;
 	}
 	else{ //n == 3
 		int temp[5][5] = {0} ;
-
 		// fill the 5x5 matrix
 		for(int i = 0 ;i < 5 ; i++){
 			for(int j = 0 ;j  < 5 ; j++)
@@ -72,13 +69,8 @@ void findInverse(int m[3][3] , int n  , int detInverse ) {
 			}
 		}
 	}
-
-	int inverse[3][3] = {0} ; 
 	for(int i = 0 ;i < n ; i++){
-		for(int j = 0 ;j  < n ; j++)
-		{
-			inverse[i][j] = mod26(adj[i][j]*detInverse) ; 
-		}
+		for(int j = 0 ;j  < n ; j++) inverse[i][j] = mod26(adj[i][j]*detInverse) ; 
 	}
 }
 
@@ -90,7 +82,6 @@ string encrypt( string pt , int n){
 	for(int i =0 ; i< pt.length()/n ; i++){
 		for(int j =0 ;j < n ;j++) P[i][j] = pt[ptIter++]-'a' ; 
 	}
-	int C[1000][3] = {0}  ; //cipher text
 	multiplyMatrices(P, pt.length()/n , n , key , n , n , C) ; 
 
 	string ct = "" ; 
@@ -99,7 +90,20 @@ string encrypt( string pt , int n){
 	}
 	return ct ; 
 }
+string decrypt( string ct , int n){
+	// P = C * K^-1
+	int P[1000][3]={0} ; //plainttext
+	int ctIter = 0  ; 
+	int keyInverse[3][3] = {0} ; 
+	findInverse(key , n , findDetInverse(findDet(key,n)) , keyInverse ) ; 
+	multiplyMatrices(C, ct.length()/n , n , keyInverse , n , n , P) ; 
 
+	string pt = "" ; 
+	for(int i =0 ; i< ct.length()/n ; i++){
+		for(int j =0 ;j < n ;j++) pt += (P[i][j]+'a') ; 
+	}
+	return pt ; 
+}
 
 
 int main(void){
@@ -110,6 +114,44 @@ int main(void){
    cout<<"Enter key matrix  : " <<endl;
    for(int i =0  ;i < n ; i++) for(int j =0 ;j < n ; j++) cin>>key[i][j] ;  
    string ct = encrypt(pt  , n) ; 
-   cout<<"Cipher text : " << ct ; 
+   cout<<"Original text	 : " << pt <<endl; 
+   cout<<"Cipher text	 : " << ct <<endl;  
+   cout<<"Decrypted text : " << decrypt(ct,n) <<endl; 
 }
 
+/*
+Enter plain text : helloitsme
+Enter number of rows in keymatrix : 3
+Enter key matrix  : 
+17      7       5
+21      18      21
+2       2       19
+Original text    : helloitsme
+Cipher text      : rnqdhhxnzzue
+Decrypted text : helloitsmexx
+
+
+------------------------------------------------
+
+Enter plain text : nateshisdancing                  
+Enter number of rows in keymatrix : 3
+Enter key matrix  : 
+3 	10	 20
+20 	9 	17
+9 	4 	17
+Original text    : nateshisdancing
+Cipher text      : cyltwlvuxsvvanp
+Decrypted text : nateshisdancing
+
+------------------------------------------------
+
+Enter plain text : meetmenow      
+Enter number of rows in keymatrix : 2
+Enter key matrix  : 
+9       4
+5       7
+Original text    : meetmenow
+Cipher text      : yybtyyfubp
+Decrypted text : meetmenowx
+
+*/
