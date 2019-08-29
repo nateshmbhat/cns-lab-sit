@@ -130,3 +130,70 @@ int main(void){
 	cout<<endl <<"Plain  text after decrypting = " << decipher(cipher)  <<endl;  	
 	}
 }
+
+/*
+
+Enter plain text : helloitsme
+Enter key : monarchy
+m o n a r 
+c h y b d 
+e f g j k 
+l p q s t 
+u v w x z 
+
+Processed text = helxlojtsmex
+Plain  text = helloitsme
+Cipher text = cfsupmkslaju
+
+Plain  text after decrypting = helxlojtsmex
+Enter key : paymore
+p a y m o 
+r e b c d 
+f g h j k 
+l n q s t 
+u v w x z 
+
+Processed text = helxlojtsmex
+Plain  text = helloitsme
+Cipher text = gbsutpksxccv
+
+Plain  text after decrypting = helxlojtsmex
+Enter key : wisdom
+w j s d o 
+m a b c e 
+f g h k l 
+n p q r t 
+u v x y z 
+
+Processed text = helxlojtsmex
+Plain  text = helloitsme
+Cipher text = lbhzteopwbbz
+
+Plain  text after decrypting = helxlojtsmex
+Enter key : enhance
+e n h a c 
+b d f g j 
+k l m o p 
+q r s t u 
+v w x y z 
+
+Processed text = helxlojtsmex
+Plain  text = helloitsme
+Cipher text = anmwmpguxshv
+
+Plain  text after decrypting = helxlojtsmex
+Enter key : encrypt
+e n c r y 
+p t a b d 
+f g h j k 
+l m o q s 
+u v w x z 
+
+Processed text = helxlojtsmex
+Plain  text = helloitsme
+Cipher text = fcqumqgbloru
+
+Plain  text after decrypting = helxlojtsmex
+
+
+*/
