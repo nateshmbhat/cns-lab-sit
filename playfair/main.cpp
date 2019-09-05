@@ -121,13 +121,13 @@ int main(void){
 	string key="monarchy" ;
 	cout<<"Enter plain text : "  ; cin >> msg ; 
 	while(1){
-	cout<<"Enter key : " ; cin>>key ;
-	fillMatrix(key) ;
-	showMatrix() ;
-	string cipher = encipher(msg) ;
-	cout<<endl <<"Plain  text = " << msg  ; 
-	cout<<endl <<"Cipher text = " << cipher  <<endl ;
-	cout<<endl <<"Plain  text after decrypting = " << decipher(cipher)  <<endl;  	
+		cout<<"Enter key : " ; cin>>key ;
+		fillMatrix(key) ;
+		showMatrix() ;
+		string cipher = encipher(msg) ;
+		cout<<endl <<"Plain  text = " << msg  ; 
+		cout<<endl <<"Cipher text = " << cipher  <<endl ;
+		cout<<endl <<"Plain  text after decrypting = " << decipher(cipher)  <<endl;  	
 	}
 }
 
