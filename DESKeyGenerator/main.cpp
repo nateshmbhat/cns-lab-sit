@@ -38,24 +38,24 @@ string firstPermute(string input)
 string secondPermute(string input)
 {
  	string res = "" ;
-	for(int i =0 ;i < input.length() ; i++)  res+=input[permChoiceTwo[i]-1] ; 
+	for(int i =0 ;i < 48 ; i++)  res+=input[permChoiceTwo[i]-1] ; 
 	return res ; 
 }
  
  
 void genKeys(string startLeft, string startRight)
 {
-	 ofstream fout ; 
-	 fout.open("keygen.txt") ; 
+   ofstream fout ; 
+   fout.open("keygen.txt") ; 
    string left = startLeft, right = startRight;
    for (int count = 0; count < 16; count++)
    {
        left = rotateSubKey(left, leftShiftTable[count]);
        right = rotateSubKey(right, leftShiftTable[count]);
  
-       string key = secondPermute(left+right).substr(0,48) ;
-	   	 cout<<"key"<<count+1<<" 	: "  << key<<endl; 
-			 fout<<key<<endl; 
+       string key = secondPermute(left+right) ;
+       cout<<"key"<<count+1<<" 	: "  << key<<endl;
+       fout<<key<<endl; 
    }
 }
 
@@ -74,6 +74,7 @@ int main(){
 
 
 /*
+  OUTPUT
 
 Enter 64 bit key in hex: 133457799bbcdff1
 
