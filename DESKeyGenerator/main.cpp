@@ -43,11 +43,10 @@ string secondPermute(string input)
 }
  
  
-void genKeys(string startLeft, string startRight)
+void genKeys(string left, string right )
 {
    ofstream fout ; 
    fout.open("keygen.txt") ; 
-   string left = startLeft, right = startRight;
    for (int count = 0; count < 16; count++)
    {
        left = rotateSubKey(left, leftShiftTable[count]);
