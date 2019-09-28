@@ -96,18 +96,18 @@ string performXOR( string s1 , string s2){
 
 
 int main(){
-	unsigned long long hexval ; 
-	cout<<"Enter 48bit input to S-box in hex : " ; cin>> hex >> hexval ;
-	string input = bitset<48>(hexval).to_string() ; 
+    unsigned long long hexval ; 
+    cout<<"Enter 48bit input to S-box in hex : " ; cin>> hex >> hexval ;
+    string input = bitset<48>(hexval).to_string() ; 
 
     cout << "Enter 64-bit (i-1)th round output in hex : " ; cin >> hex >> hexval; 
 
     cout<<"Sbox Input is : " << input<<endl; 
 
     string left = bitset<64>(hexval).to_string().substr(0,32) ; 
-	string right = applyPermuteTable( applySBoxes( input)) ; 
+    string right = applyPermuteTable( applySBoxes( input)) ; 
 
-	cout<< "32bit output after applying Sboxes and Permute Function : " << right << endl ; 
+    cout<< "32bit output after applying Sboxes and Permute Function : " << right << endl ; 
     cout<<"Output of Round I is : " << performXOR(left , right) << endl ;
 }
 
