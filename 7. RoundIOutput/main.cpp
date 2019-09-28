@@ -99,8 +99,25 @@ int main(){
 	unsigned long long hexval ; 
 	cout<<"Enter 48bit input to S-box in hex : " ; cin>> hex >> hexval ;
 	string input = bitset<48>(hexval).to_string() ; 
+
     cout << "Enter 64-bit (i-1)th round output in hex : " ; cin >> hex >> hexval; 
+
+    cout<<"Sbox Input is : " << input<<endl; 
+
     string left = bitset<64>(hexval).to_string().substr(0,32) ; 
 	string right = applyPermuteTable( applySBoxes( input)) ; 
-	cout<< "32 output after applying Sboxes and Permute Function : " << right << endl ; 
+
+	cout<< "32bit output after applying Sboxes and Permute Function : " << right << endl ; 
+    cout<<"Output of Round I is : " << performXOR(left , right) << endl ;
 }
+
+/* OUTPUT 
+
+Enter 48bit input to S-box in hex : 6117ba866527
+Enter 64-bit (i-1)th round output in hex : cc00ccfff0aaf0aa
+Sbox Input is : 011000010001011110111010100001100110010100100111
+Sbox output = 01011100100000101011010110010111
+32bit output after applying Sboxes and Permute Function : 00100011010010101010100110111011
+Output of Round I is : 11101111010010100110010101000100
+
+*/
