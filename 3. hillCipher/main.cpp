@@ -54,15 +54,9 @@ void findInverse(int m[3][3] , int n  , int detInverse , int inverse[3][3] ) {
 	else{ //n == 3
 		int temp[5][5] = {0} ;
 		// fill the 5x5 matrix
-		for(int i = 0 ;i < 5 ; i++){
+		for(int i = 0 ;i < 5 ; i++)
 			for(int j = 0 ;j  < 5 ; j++)
-				{
-					if(i<3 && j<3) temp[i][j] = m[i][j] ;
-					else if(i>=3 && j>=3) temp[i][j] = temp[i][j-3] ;
-					else if(j>=3)temp[i][j] = m[i][j-3] ;
-					else if(i>=3) temp[i][j] = m[i-3][j] ;
-				}
-		}
+				temp[i][j] = m[i%3][j%3] ;
 		// except first row and column , multiply elements along rows and place them along columns
 		for(int i =1 ;i <= 3 ; i++){
 			for(int j =1  ; j <= 3 ; j++){
