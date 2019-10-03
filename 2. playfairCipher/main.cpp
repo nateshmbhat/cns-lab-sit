@@ -8,34 +8,28 @@ using namespace std  ;
 char m[5][5]  = {0} ;
 
 void fillMatrix(string key){
-	string oldkey = key  ; 
-	key = "" ; 
-	for(int i= 0 ;i < oldkey.length() ; i++) key+=(oldkey[i]=='i'?'j':oldkey[i]) ;
-	int r =0 , c = 0 ; 
-	set<char> charsLeft ;
-	for(int l ='a' ; l<='z' ; l++) charsLeft.insert(l) ;
-	charsLeft.erase('i') ;
-	
-	int i = 0 ;
-	set<char> charsAdded ;
-	while(i<key.length()){
-		if(charsLeft.find(key[i])!=charsLeft.end()){		
-			m[r][c++] = key[i] ;
-			if(c==5){
-				r++ ; c = 0 ;
-			}
-			charsLeft.erase(key[i]) ;
-		}
-		i++ ;
-	}
-		
-	while(charsLeft.size()>0){
-		m[r][c++] = *charsLeft.begin() ;
-		if(c==5){
-			r++ ; c = 0 ;
-		}
-		charsLeft.erase(*charsLeft.begin()) ;
-	}
+    set<char> charsAdded , charsLeft ; 
+    for(char i='a' ; i<='z' ; i++) charsLeft.insert(i) ; 
+    charsLeft.erase('j') ;
+    while(key.find("j")!=string::npos) key.replace(key.find("j"), 1 , "i") ; 
+
+    int r = 0 , c = 0 ;
+    int keyIndex = 0 ; 
+    for(int i =0 ;i < 25 ; i++){
+        if(charsAdded.size()<key.size()){
+           charsAdded.insert(key[keyIndex]) ;  
+           charsLeft.erase(key[keyIndex]) ; 
+           m[r][c++] = key[keyIndex++] ; 
+        }
+        else{
+            m[r][c++] = *charsLeft.begin() ; 
+            charsLeft.erase(*charsLeft.begin()) ; 
+        }
+        if(c==5){
+               c = 0 ; 
+               r++ ; 
+        }
+    }
 }
 
 void showMatrix(){
