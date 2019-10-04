@@ -10,24 +10,22 @@ char m[5][5]  = {0} ;
 void fillMatrix(string key){
     set<char> charsAdded , charsLeft ; 
     for(char i='a' ; i<='z' ; i++) charsLeft.insert(i) ; 
-    charsLeft.erase('j') ;
-    while(key.find("j")!=string::npos) key.replace(key.find("j"), 1 , "i") ; 
+    charsLeft.erase('i') ;
+    while(key.find("i")!=string::npos) key.replace(key.find("i"), 1 , "j") ; 
 
-    int r = 0 , c = 0 ;
-    int keyIndex = 0 ; 
-    for(int i =0 ;i < 25 ; i++){
-        if(charsAdded.size()<key.size()){
-           charsAdded.insert(key[keyIndex]) ;  
-           charsLeft.erase(key[keyIndex]) ; 
-           m[r][c++] = key[keyIndex++] ; 
-        }
-        else{
-            m[r][c++] = *charsLeft.begin() ; 
-            charsLeft.erase(*charsLeft.begin()) ; 
-        }
-        if(c==5){
-               c = 0 ; 
-               r++ ; 
+    // add key
+    int keyI = 0 ; 
+    for(int r =0 ;r < 5 ; r++){
+        for(int c =0 ;c < 5 ; c++){
+            if(charsAdded.size()<key.size()){
+                charsAdded.insert(key[keyI]) ;  
+                charsLeft.erase(key[keyI]) ; 
+                m[r][c] = key[keyI++] ; 
+            }
+            else{
+                m[r][c] = *charsLeft.begin() ; 
+                charsLeft.erase(*charsLeft.begin()) ; 
+            }
         }
     }
 }
