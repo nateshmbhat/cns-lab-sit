@@ -31,11 +31,10 @@ void fillMatrix(string key){
 }
 
 void showMatrix(){
-	for(int i =0 ;i< 5 ; i++){
+	for(int i =0 ;i< 5 ; cout<<endl, i++){
 		for(int j= 0 ;j < 5  ; j++){
 			cout<<m[i][j] <<" " ;
 		}
-		cout<<endl; 
 	}
 }
 
@@ -60,7 +59,7 @@ string preProcessPlainText(string pt){
 	return pt ;
 }
 
-string encipher(string pt){
+string encrypt(string pt){
 	pt = preProcessPlainText(pt) ;	
 	cout<<endl <<"Processed text = " << pt  ; 
 	string cipher = "" ;
@@ -85,7 +84,7 @@ string encipher(string pt){
 	return cipher ;
 }
 
-string decipher(string pt){
+string decrypt(string pt){
 	string cipher = "" ;
 	for(int i =1 ; i<pt.length() ; i+=2){
 		char a=pt[i-1] , b = pt[i] ;
@@ -116,10 +115,10 @@ int main(void){
 		cout<<"Enter key : " ; cin>>key ;
 		fillMatrix(key) ;
 		showMatrix() ;
-		string cipher = encipher(msg) ;
+		string cipher = encrypt(msg) ;
 		cout<<endl <<"Plain  text = " << msg  ; 
 		cout<<endl <<"Cipher text = " << cipher  <<endl ;
-		cout<<endl <<"Plain  text after decrypting = " << decipher(cipher)  <<endl;  	
+		cout<<endl <<"Plain  text after decrypting = " << decrypt(cipher)  <<endl;  	
 	}
 }
 
