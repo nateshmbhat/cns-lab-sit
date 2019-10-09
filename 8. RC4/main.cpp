@@ -9,7 +9,7 @@ int main(void){
 	int j =0, i = 0 ,n ; 
 	string keyString , ptString ; 
 	cout<<"Enter plaintext : " ; cin>>ptString ; 
-	cout<<"Enter key : " ; cin>>keyString ; 
+	cout<<"Enter key of same length : " ; cin>>keyString ; 
 	n = keyString.length() ; 
 	for(i =0 ;i<keyString.length() ; i++) key[i] = keyString[i] ; 
 	for(i =0 ;i<ptString.length() ; i++) pt[i] = ptString[i] ; 
@@ -57,7 +57,7 @@ int main(void){
 /*
 
 Enter plaintext : hello
-Enter key : yello 
+Enter key of same length : yello 
 plaintext in bytes : 104 101 108 108 111 
 keystream is : 248 30 202 165 16 
 Cipher text is : 144 123 166 201 127 
@@ -67,7 +67,7 @@ Plaintext after decryption : 104 101 108 108 111
 
 
 Enter plaintext : ramesh
-Enter key : ganesh
+Enter key of same length : ganesh
 plaintext in bytes : 114 97 109 101 115 104 
 keystream is : 147 9 65 204 1 213 
 Cipher text is : 225 104 44 169 114 189 
