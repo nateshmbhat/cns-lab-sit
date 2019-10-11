@@ -12,11 +12,11 @@ int expansionTable[48]=
 	28,29,28,29,30,31,32,1 
 }; 
 
-string getKeyIFromFile( int i , const char * filename = "keygen.txt"){
+string getKeyIFromFile( int round , const char * filename = "keygen.txt"){
 	ifstream fin ;
 	fin.open(filename) ;
 	string temp ; 
-	for(int j= 1 ;j <= i ; j++) fin >> temp ; 
+	for(int j= 0 ;j < round ; j++) fin >> temp ; 
 	return temp ;
 }
 
