@@ -4,7 +4,6 @@ using namespace std ;
 
 string uniquePlainText ; 
 
-
 string readPlainText(const char * name="plaintext.txt"){
 	string pt ; 
 	ifstream fin; 
@@ -14,7 +13,7 @@ string readPlainText(const char * name="plaintext.txt"){
 }
 
 
-void permute(char a[], int l, int r , vector<string>& ks)
+void permute(string a, int l, int r , vector<string>& ks)
 { 
     if (l == r)  
         ks.push_back(a) ;
@@ -34,16 +33,11 @@ void permute(char a[], int l, int r , vector<string>& ks)
 vector<string> genKeySpace(string pt ){
 	set<char> charset ; 
 	for(int i =0 ;i < pt.length() ; i++) charset.insert(pt[i]) ; 
-	char letterString[1000] ; int count =0  ;
-	 
-	for(set<char>::iterator it = charset.begin() ; it!=charset.end() ; it++) { 
-		letterString[count++] = (*it) ;
-	}
-	uniquePlainText  = string(letterString) ; // GLOBAL INITIALIZATION (BAD)
-	cout<<letterString <<endl;
+
+	uniquePlainText  = string(charset.begin() , charset.end()) ; 
+
 	vector<string> keyspace ;
-	permute(letterString , 0 , count - 1 , keyspace ) ;
-	for(int i =0 ; i < keyspace.size() ; i++) cout<<keyspace[i]<< endl ;
+	permute(uniquePlainText , 0 , uniquePlainText.length()-1 , keyspace ) ;
 	return keyspace ;  
 }
 

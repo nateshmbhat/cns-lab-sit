@@ -1,9 +1,9 @@
 #include<bits/stdc++.h>
+using namespace std  ; 
+
 typedef struct{
 	int row , col ; 
 } Position ; 
-
-using namespace std  ; 
 
 char m[5][5]  = {0} ;
 
@@ -11,20 +11,21 @@ void fillMatrix(string key){
     set<char> charsAdded , charsLeft ; 
     for(char i='a' ; i<='z' ; i++) charsLeft.insert(i) ; 
     charsLeft.erase('i') ;
-    while(key.find("i")!=string::npos) key.replace(key.find("i"), 1 , "j") ; 
+	for(int i =0 ;i < key.length() ; i++)
+		if(key[i]=='i') key[i] = 'j' ; 
 
     // add key
     int keyI = 0 ; 
     for(int r =0 ;r < 5 ; r++){
         for(int c =0 ;c < 5 ; c++){
-            if(charsAdded.size()<key.size()){
+            if(charsAdded.size()<key.length()){
                 charsAdded.insert(key[keyI]) ;  
                 charsLeft.erase(key[keyI]) ; 
                 m[r][c] = key[keyI++] ; 
             }
             else{
                 m[r][c] = *charsLeft.begin() ; 
-                charsLeft.erase(*charsLeft.begin()) ; 
+                charsLeft.erase(m[r][c]) ; 
             }
         }
     }
@@ -48,14 +49,13 @@ Position locateElement(char k){
 }
 
 string preProcessPlainText(string pt){
-    string ptcopy = pt ;
-    pt = "" ; 
-    for(int i =0 ;i < ptcopy.length() ; i++) pt+=(ptcopy[i]=='i'?'j':ptcopy[i]) ; 
+	for(int i =0 ;i < pt.length() ; i++) 
+		if(pt[i]=='i') pt[i] = 'j' ; 
 	for(int i =1 ; i < pt.length() ; i+=2){
 		if(pt[i]==pt[i-1])
 			pt.insert(i , "x") ;
 	}
-	if(pt.length()&1)pt+="x" ; //pad extra x if length is odd
+	if(pt.length()%2==1)pt+="x" ; //pad extra x if length is odd
 	return pt ;
 }
 

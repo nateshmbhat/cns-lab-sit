@@ -2,16 +2,20 @@
 using namespace std ; 
 
 string encrypt(string pt , string key){
-	int t = 0 ,  totalRows = ceil((float)pt.length()/key.length()) ;  // here  t is to iterate over text
+	int t = 0 ;   // here  t is to iterate over text
 	char matrix[100][100]  ; string ct ="" ; 
+
+	while(pt.length()%key.length())pt+="x" ;
+	int totalRows = pt.length()/key.length() ; 
+
 	for(int r = 0 ; r < totalRows ; cout<<endl ,  r++){
 		for(int c = 0 ; c < key.length() ; c++){
-			cout<< (matrix[r][c] = t<pt.length()?pt[t++]:'x') <<'\t' ; 
+			cout<< (matrix[r][c] = pt[t++]) <<'\t' ; 
 		}
 	}
 
-	for(char c= '1'  ;  c <= '1'+key.length() ; c++){	
-		int col = key.find(c) , totalRows =  ceil((float)pt.length()/key.length()) ; 
+	for(char c= '1'  ;  c <= '0'+key.length() ; c++){	
+		int col = key.find(c) ;
 		for(int i =0 ; i < totalRows ; i++) ct+= matrix[i][col] ; 
 	}
 	return ct ; 
@@ -20,7 +24,7 @@ string encrypt(string pt , string key){
 string decrypt(string ct , string key){
 	char matrix[100][100]  ; string pt="" ; 
 	int t= 0 , totalRows = ceil(ct.length()/key.length()) ;  //t is text iterator
-	for(char c='1' ; c<'1'+key.length() ; c++){
+	for(char c='1' ; c<='0'+key.length() ; c++){
 		int col = key.find(c) ;
 		for(int i= 0 ; i < totalRows ; i++){
 			matrix[i][col] = ct[t++] ; 
@@ -62,7 +66,7 @@ h	e	l	l
 o	i	t	s	
 m	e	x	x	
 Original text 		: helloitsme
-Cipher   text		: eielsxhomltx
+Cipher   text		: eielsxhomlsx
 Decrypted text		: helloitsmexx
 
 

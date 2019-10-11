@@ -65,13 +65,11 @@ Plaintext after decryption : 104 101 108 108 111
 
 
 
-
 Enter plaintext : ramesh
 Enter key of same length : ganesh
 plaintext in bytes : 114 97 109 101 115 104 
 keystream is : 147 9 65 204 1 213 
 Cipher text is : 225 104 44 169 114 189 
 Plaintext after decryption : 114 97 109 101 115 104 
-
 
 */
