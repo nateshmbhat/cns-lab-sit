@@ -1,5 +1,5 @@
 ## Cryptography and Network Security Lab
-This repository contains programs implemented in Cryptography and network security Lab in my 7th semester of SIT(VTU).
+This repository contains programs of Part A implemented in Cryptography and network security Lab in my 7th semester of SIT(VTU).
 
 
 1. Perform encryption and decryption using mono-alphabetic cipher. The program should support the following :
