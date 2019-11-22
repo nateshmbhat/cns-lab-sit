@@ -1,4 +1,4 @@
-## Cryptography and Network Security Lab
+## Cryptography and Network Security Lab ( PART A PROGRAMS )
 This repository contains programs of Part A implemented in Cryptography and network security Lab in my 7th semester of SIT(VTU).
 
 
