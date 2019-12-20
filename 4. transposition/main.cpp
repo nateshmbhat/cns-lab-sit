@@ -3,8 +3,7 @@ using namespace std ;
 
 string encrypt(string pt , string key){
 	int t = 0 ;   // here  t is to iterate over text
-	char matrix[100][100]  ; string ct ="" ; 
-
+	char matrix[100][100]  ;  
 	while(pt.length()%key.length())pt+="x" ;
 	int totalRows = pt.length()/key.length() ; 
 
@@ -13,7 +12,7 @@ string encrypt(string pt , string key){
 			cout<< (matrix[r][c] = pt[t++]) <<'\t' ; 
 		}
 	}
-
+	string ct ="" ;
 	for(char c= '1'  ;  c <= '0'+key.length() ; c++){	
 		int col = key.find(c) ;
 		for(int i =0 ; i < totalRows ; i++) ct+= matrix[i][col] ; 
